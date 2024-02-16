@@ -7,6 +7,6 @@ The Authentication flow for the application is:
 ### User Signup/Login
 
 METHOD | ENDPOINT         | TOKEN | ROLE | DESCRIPTION              | POST PARAMS                                     | RETURNS
--------|------------------|-------|------|--------------------|-------------------------------------------------|--------------------
-POST   | /auth/signup     | -     | user | User Signup              | `userName`, `email`, `password`, `address`, `birthDate` , `phone`, `zipCode`  | { token: `token` }
-POST   | /auth/login      | -     | user | User Login               | `email`, `password`                             | { token: `token` }
+-------|------------------|-------|------|--------------------------|-------------------------------------------------|--------------------
+POST   | /auth/signup     | -     | user | User Signup              | `name`, `email`, `password`,                    | { message: `string`, result: `token` }
+POST   | /auth/login      | -     | user | User Login               | `email`, `password`                             | { message: `string`, result: `token` }

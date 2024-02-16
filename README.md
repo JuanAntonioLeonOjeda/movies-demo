@@ -24,3 +24,16 @@ PUT    | /user/profile         | YES   | user | Update Own Profile       |  `nam
 PUT    | /user/me/password         | YES   | admin| Change Own Password      |  `password`                            | { message: `string`, result: `object` }
 DELETE  | /user/:id       | YES   | admin| Delete One User          |                                                 | { message: `string`, result: `object` }
 DELETE  | /user/profile   | YES   | user | Delete Own Profile        |                                                 | { message: `string`, result: `object` }
+
+### Movie Endpoints
+
+METHOD | ENDPOINT         | TOKEN | ROLE | DESCRIPTION              | POST PARAMS                                     | RETURNS
+-------|------------------|-------|------|--------------------------|-------------------------------------------------|--------------------
+GET    | /movie            | YES   | user| Get All movies            |                                                 | { message: `string`, result: `array` }
+GET    | /movie/:id        | YES   | user| Get One movie             |                                                 | { message: `string`, result: `object` }
+POST   | /movie            | YES   | admin| Create One movie          |  `title`, `description`, `genre_id`            | { message: `string`, result: `object` }
+PUT    | /movie/:id        | YES   | admin| Update One movie          |  `title`, `description`, `genre_id`            | { message: `string`, result: `object` }
+PUT    | /movie/add/:id | YES   | user| Add movie to my favorites |                                                    | { message: `string`, result: `object` }
+PUT    | /movie/remove/:id | YES   | user| Remove movie from my favorites |                                            | { message: `string`, result: `object` }
+PUT    | /movie/favorites/:movieId/:userId  | YES   | admin| Add one favorite movie to one user |                      | { message: `string`, result: `object` }
+DELETE | /movie/:id       | YES   | admin| Delete One movie          |                                                 | { message: `string`, result: `object` }

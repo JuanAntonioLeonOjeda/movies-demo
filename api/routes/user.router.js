@@ -4,6 +4,11 @@ const {
   createUser
 } = require('../controllers/user.controller')
 
-userRouter.post('/', createUser)
+const {
+  checkAuth,
+  checkAdmin
+} = require('../utils/middlewares')
+
+userRouter.post('/', checkAuth, checkAdmin, createUser)
 
 module.exports = userRouter

@@ -24,6 +24,23 @@ const createUser = async (req, res) => {
   }
 }
 
+const getOwnProfile = async (req, res) => {
+  try {
+    const user = await User.findByPk(res.locals.user.id)
+
+    res.status(200).json({
+      message: "User profile correct",
+      result: user,
+    });
+  } catch (error) {
+    res.status(500).json({
+      message: "Error creating user",
+      result: error,
+    });
+  }
+}
+
 module.exports = {
-  createUser
+  createUser,
+  getOwnProfile
 }

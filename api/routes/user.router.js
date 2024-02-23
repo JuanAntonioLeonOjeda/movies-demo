@@ -1,7 +1,8 @@
 const userRouter = require("express").Router()
 
 const {
-  createUser
+  createUser,
+  getOwnProfile
 } = require('../controllers/user.controller')
 
 const {
@@ -9,6 +10,7 @@ const {
   checkAdmin
 } = require('../utils/middlewares')
 
+userRouter.get('/profile', checkAuth, getOwnProfile)
 userRouter.post('/', checkAuth, checkAdmin, createUser)
 
 module.exports = userRouter

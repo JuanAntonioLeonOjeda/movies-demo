@@ -1,4 +1,5 @@
 const User = require('../models/user.model')
+const Movie = require('../models/movie.model')
 const bcrypt = require('bcrypt')
 
 const createUser = async (req, res) => {
@@ -27,7 +28,7 @@ const createUser = async (req, res) => {
 const getOwnProfile = async (req, res) => {
   try {
     const user = await User.findByPk(res.locals.user.id, {
-      include: 'Movie'
+      include: Movie
     })
 
     //const movies = await user.getMovies()

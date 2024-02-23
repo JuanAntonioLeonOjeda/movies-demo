@@ -1,12 +1,10 @@
 const Movie = require('../models/movie.model')
 const Genre = require('../models/genre.model')
+const User = require('../models/user.model')
 
 const getAllMovies = async (req, res) => {
   try {
     const movies = await Movie.findAll({
-      attributes: {
-        exclude: "id",
-      },
       where: req.query
     });
 
@@ -63,8 +61,29 @@ const createMovie = async (req, res) => {
   }
 }
 
+const addFavoriteMovie = async (req, res) => {
+  try {
+    const user = await User.findByPk(res.locals.user.id)
+
+    const movie = await Movie.findByPk(req.params.id)
+
+    await user.addMovie(movie)
+
+    res.status(200).json({
+      message: "movie added",
+      result: movie,
+    });
+  } catch (error) {
+     res.status(500).json({
+       message: "Error creating genre",
+       result: error,
+     });
+  }
+}
+
 module.exports = {
   getAllMovies,
   getMovieById,
-  createMovie
+  createMovie,
+  addFavoriteMovie
 }

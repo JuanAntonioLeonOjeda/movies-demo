@@ -26,7 +26,11 @@ const createUser = async (req, res) => {
 
 const getOwnProfile = async (req, res) => {
   try {
-    const user = await User.findByPk(res.locals.user.id)
+    const user = await User.findByPk(res.locals.user.id, {
+      include: 'Movie'
+    })
+
+    //const movies = await user.getMovies()
 
     res.status(200).json({
       message: "User profile correct",
